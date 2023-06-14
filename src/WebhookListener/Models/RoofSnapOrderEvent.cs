@@ -53,18 +53,8 @@ public class RoofSnapOrderEventData
 
 public enum RoofSnapEventType
 {
-    None,
     ProjectCreated,
     SketchOrderCompleted,
     SketchOrderNotCompleted,
-    ProjectUpdated,
-    ProjectDeleted,
-    UserProfileActivated,
-    UserProfileDeactivated,
-    UserProfileUpdated,
-    UserProfileCreated,
-    OrganizationUpdated,
-    OrganizationCreated,
     ProjectStatusChanged,
-    SketchOrderCreated
 }
