@@ -53,8 +53,8 @@ public class RoofSnapOrderEventData
 
 public enum RoofSnapEventType
 {
-    ProjectCreated,
+    ProjectCreated = 1,
     SketchOrderCompleted,
     SketchOrderNotCompleted,
-    ProjectStatusChanged,
+    ProjectStatusChanged
 }

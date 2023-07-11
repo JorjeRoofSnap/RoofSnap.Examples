@@ -71,7 +71,7 @@ If you would like to test the controller without the overhead of having to creat
 
 Replace {sketchorderid} with the id of an order that you know has already been completed.
 
-Replace {orgid} with your organization's id. You can obtain this from RoofSnap support or success departments.
+Replace {orgid} with your organization's id. You can obtain this from the RoofSnap success department at [success@roofsnap.com](mailto:success@roofsnap.com).
 
 You can optionally set the {officeid}. The RoofSnap Api will set it to an office id if the webhook subscription
 is tied to an office otherwise it will be null.
