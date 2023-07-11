@@ -95,8 +95,8 @@ is tied to an office otherwise it will be null.
 
 ### The response
 
-Out of the box the controller method returns a response with an empty body. This is because the service
-that will ultimately send the request doesn't need any parameters.
+Out of the box the controller method returns a NoContent result. This is because the service
+that will ultimately send the request doesn't expect a response.
 
 Instead there are a number of log statements within the controller that will log various data points throughout the
 process.
@@ -126,7 +126,7 @@ Replace {webhookurl} with the url you would like the RoofSnap Api to make a requ
 Replace {officeid} with null if you would like the subscription to apply to all orders placed by {orgid}
 
 **Note:** Currently the valid WebHookEventTypes are 
-- ProjectCreated
-- SketchOrderCompleted
-- SketchOrderNotCompleted
-- ProjectStatusChanged
+- ProjectCreated = 1
+- SketchOrderCompleted = 2
+- SketchOrderNotCompleted = 3
+- ProjectStatusChanged = 4

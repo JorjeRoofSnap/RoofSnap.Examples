@@ -71,7 +71,7 @@ public class RoofSnapOrderController : ControllerBase
             return StatusCode(500);
         }
 
-        return Ok();
+        return NoContent();
     }
 
     private async Task<JsonNode?> GetResourceAsync(string subject, string version = "v2")
