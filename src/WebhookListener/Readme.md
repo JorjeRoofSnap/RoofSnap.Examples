@@ -24,14 +24,14 @@ secrets.
 
 ### Acquiring your SubscriptionKey
 
-1. Sign up for a RoofSnap API developer account at https://roofsnap.portal.azure-api.net/.
+1. Sign up for a RoofSnap API developer account at https://roofsnap.developer.azure-api.net/.
    Each organization integrating with RoofSnap should share a single developer account
    created here. The signup process will require that a full name be provided for the
    account. You may make this name a point-of-contact for your organization, or fill in your
    organization name. The email address you use to sign up will be used to reset the
    developer account password.
 2. Once you have completed the signup process, navigate to the “Products” tab of the
-   RoofSnap API portal (https://roofsnap.portal.azure-api.net/products). You should see one
+   RoofSnap API portal (https://roofsnap.developer.azure-api.net/products). You should see one
    product “RoofSnap API (Dev/Test)”. Subscribing to this product will grant you access to
    the RoofSnap dev/test environment. A RoofSnap API administrator will need to approve
    your subscription request to finalize your access to the API.
@@ -42,6 +42,10 @@ secrets.
    unique to your organization and should be kept secret. If you need to regenerate your
    API key(s), you may do so through this interface.
 
+### Acquiring your Organization Id
+1. You will need to obtain a jwt token first. See the GetTokenAsync method on line 97 of RoofSnapOrderController.
+2. Place a get request to /whoami. You'll need to include an `Authorization` header set to `Bearer {jwt}` and the `Ocp-Apim-Subscription-Key` header should be set to the subscription key acquired in the last section.
+
 ### Username and Password
 
 The username and password are simply acquired by creating a new user using the RoofSnap web application.
@@ -49,8 +53,7 @@ The username and password are simply acquired by creating a new user using the R
 1. Visit https://app.roofsnap.com/account and click "Users" on the left side of the page.
 2. Click the green "Add User" button.
 3. Fill in the required details. The email address and password you set here will be what you need to set in the
-   configuration
-   settings in order to get a valid token.
+   configuration settings in order to get a valid token.
 
 ## Starting the examples
 From the solution root run the following commands
@@ -71,7 +74,7 @@ If you would like to test the controller without the overhead of having to creat
 
 Replace {sketchorderid} with the id of an order that you know has already been completed.
 
-Replace {orgid} with your organization's id. You can obtain this from the RoofSnap success department at [success@roofsnap.com](mailto:success@roofsnap.com).
+Replace {orgid} with your organization's id.
 
 You can optionally set the {officeid}. The RoofSnap Api will set it to an office id if the webhook subscription
 is tied to an office otherwise it will be null.
@@ -96,7 +99,7 @@ is tied to an office otherwise it will be null.
 ### The response
 
 Out of the box the controller method returns a NoContent result. This is because the service
-that will ultimately send the request doesn't expect a response.
+that will ultimately send the request doesn't expect a response body.
 
 Instead there are a number of log statements within the controller that will log various data points throughout the
 process.
@@ -109,6 +112,8 @@ Logs are displayed
     - In the Debug output window when debugging.
     - In the ASP.NET Core Web Server window.
 - In the console window when the app is run with dotnet run.
+
+If a an error result is returned the message will be requeued and resent at a later time.
 
 ## Creating the webhook subscription
 To create a new webhook subscription create a new post request to ``https://roofsnap.azure-api.net/dev/v1/webhooksubscriptions`` with the following body:
@@ -130,3 +135,6 @@ Replace {officeid} with null if you would like the subscription to apply to all 
 - SketchOrderCompleted = 2
 - SketchOrderNotCompleted = 3
 - ProjectStatusChanged = 4
+
+## Issues
+If you run into any issues please contact success@roofsnap.com.
